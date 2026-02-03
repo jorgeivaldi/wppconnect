@@ -59,6 +59,8 @@ export class HostLayer {
   public statusFind?: StatusFindCallback = null;
   public onLoadingScreen?: LoadingScreenCallback = null;
   public catchLinkCode?: LinkByCodeCallback = null;
+  public onWPPInjected?: () => void = null;
+  public onPageLoaded?: () => void = null;
 
   constructor(public page: Page, session?: string, options?: CreateConfig) {
     this.session = session;
@@ -137,6 +139,7 @@ export class HostLayer {
     this.getWAJSVersion()
       .then((version) => {
         this.log('info', `WA-JS version: ${version}`);
+        this.onWPPInjected?.();
       })
       .catch(() => null);
 

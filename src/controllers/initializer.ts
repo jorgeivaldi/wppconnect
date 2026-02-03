@@ -26,6 +26,8 @@ import {
   CreateOptions,
   LinkByCodeCallback,
   LoadingScreenCallback,
+  OnPageLoadedCallback,
+  OnWPPInjectedCallback,
   StatusFindCallback,
 } from '../api/model/initializer';
 import { SessionToken } from '../token-store';
@@ -69,6 +71,8 @@ export async function create(
   catchQR?: CatchQRCallback,
   statusFind?: StatusFindCallback,
   onLoadingScreen?: LoadingScreenCallback,
+  onWPPInjected?: OnWPPInjectedCallback,
+  onPageLoaded?: OnPageLoadedCallback,
   catchLinkCode?: LinkByCodeCallback,
   options?: CreateConfig,
   browserSessionToken?: SessionToken
@@ -79,6 +83,8 @@ export async function create(
   catchQR?: CatchQRCallback,
   statusFind?: StatusFindCallback,
   onLoadingScreen?: LoadingScreenCallback,
+  onWPPInjected?: OnWPPInjectedCallback,
+  onPageLoaded?: OnPageLoadedCallback,
   catchLinkCode?: LinkByCodeCallback,
   options?: CreateConfig,
   browserSessionToken?: SessionToken
@@ -105,6 +111,8 @@ export async function create(
     statusFind = sessionOrOption.statusFind || statusFind;
     onLoadingScreen = sessionOrOption.onLoadingScreen || onLoadingScreen;
     catchLinkCode = sessionOrOption.catchLinkCode || catchLinkCode;
+    onWPPInjected = sessionOrOption.onWPPInjected || onWPPInjected;
+    onPageLoaded = sessionOrOption.onPageLoaded || onPageLoaded;
 
     if (!options.sessionToken) {
       options.sessionToken =
@@ -242,6 +250,8 @@ export async function create(
     client.statusFind = statusFind;
     client.onLoadingScreen = onLoadingScreen;
     client.catchLinkCode = catchLinkCode;
+    client.onWPPInjected = onWPPInjected;
+    client.onPageLoaded = onPageLoaded;
 
     await client.start();
 

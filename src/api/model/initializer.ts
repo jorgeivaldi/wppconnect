@@ -41,6 +41,10 @@ export type StatusFindCallback = (
  */
 export type LoadingScreenCallback = (percent: number, message: string) => void;
 
+export type OnWPPInjectedCallback = () => void;
+
+export type OnPageLoadedCallback = () => void;
+
 /**
  * A callback will be received, informing a code to you connect
  */
@@ -70,6 +74,10 @@ export interface CreateOptions extends CreateConfig {
    * A callback will be received, informing data as percentage and loading screen message
    */
   onLoadingScreen?: LoadingScreenCallback;
+
+  onPageLoaded?: OnPageLoadedCallback;
+
+  onWPPInjected?: OnWPPInjectedCallback;
   /**
    * Pass the session token information you can receive this token with the await client.getSessionTokenBrowser () function
    * @deprecated in favor of `sessionToken`
